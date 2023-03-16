@@ -1,0 +1,3 @@
+-> movimento e raycaster (adicionar mapa);
+-> texturas N,S,E,O ajustar orientaçao (confirmar se n estao invertidas)
+-> trocar todas as apariçoes de mapWeigh / mapwidth por var
