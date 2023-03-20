@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strends.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 13:05:21 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 13:11:25 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+bool	ft_strends(char *string, char *substring)
 {
-	t_data	*data;
+	int	str_len;
+	int	substr_len;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	str_len = ft_strlen(string);
+	substr_len = ft_strlen(substring);
+	if (str_len < substr_len)
+		return (false);
+	return (ft_strncmp(\
+		string + str_len - substr_len, \
+		substring, \
+		ft_strlen(substring) \
+	) == 0);
 }

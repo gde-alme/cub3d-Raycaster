@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_str_expand.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 13:36:22 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 13:38:57 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_str_expand(char *str, int len, char c)
 {
-	t_data	*data;
+	int		i;
+	int		str_len;
+	char	*res;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	str_len = ft_strlen(str);
+	if (str_len >= len)
+		return (str);
+	res = malloc(sizeof(char) * (len + 1));
+	if (!res)
+		return (res);
+	i = 0;
+	while (i < str_len)
+	{
+		res[i] = str[i];
+		i++;
+	}
+	free(str);
+	while (i < len)
+		res[i++] = c;
+	res[i] = '\0';
+	return (res);
 }

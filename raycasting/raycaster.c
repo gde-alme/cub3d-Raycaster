@@ -6,11 +6,11 @@
 /*   By: gde-alme <gde-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:32:56 by gde-alme          #+#    #+#             */
-/*   Updated: 2023/03/16 18:37:40 by gde-alme         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:32:53 by gde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "../cub3d.h"
 
 static void	_delta_step(t_data *gdata)
 {
@@ -58,11 +58,8 @@ static void	_first_hit(t_data *gdata)
 
 static void	_dda(t_data *gdata)
 {
-	int	hit;
-
-	hit = 0;
 	gdata->side = -1;
-	while (hit == 0)
+	while (true)
 	{
 		if (gdata->sidedist.x < gdata->sidedist.y)
 		{
@@ -76,8 +73,9 @@ static void	_dda(t_data *gdata)
 			gdata->p_pos.y += gdata->step.y;
 			gdata->side = 1;
 		}
-		if (_check_hit(gdata) > 0)
-			hit = 1;
+		if (_check_hit(gdata, \
+			(int)gdata->p_pos.y, (int)gdata->p_pos.x) > 0)
+			break ;
 	}
 	if (gdata->side == 0)
 		gdata->dist = gdata->sidedist.x - gdata->deltastep.x;
@@ -89,8 +87,8 @@ static void	_gdata_init(t_data *gdata, float pov)
 {
 	gdata->sidedist.x = 0;
 	gdata->sidedist.y = 0;
-	gdata->p_pos.x = gdata->player_pos_x;
-	gdata->p_pos.y = gdata->player_pos_y;
+	gdata->p_pos.x = gdata->player_pos->x;
+	gdata->p_pos.y = gdata->player_pos->y;
 	gdata->p_dir.x = cos(pov);
 	if (gdata->p_dir.x > -0.00001 && gdata->p_dir.x < 0.00001)
 		gdata->p_dir.x *= -1;

@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 13:05:21 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 13:11:25 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_isalpha(int c)
 {
-	t_data	*data;
-
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
 }

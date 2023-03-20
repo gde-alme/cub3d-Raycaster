@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 13:53:55 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 13:58:57 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_strncmp(const char *str1, const char *str2, size_t len)
 {
-	t_data	*data;
+	char	c1;
+	char	c2;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	while (len--)
+	{
+		c1 = *str1++;
+		c2 = *str2++;
+		if (c1 != c2)
+			return ((unsigned char)c1 - (unsigned char)c2);
+		if (!c1)
+			break ;
+	}
+	return (0);
 }

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 14:57:46 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 15:07:05 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(const char *src)
 {
-	t_data	*data;
+	char	*new_src;
+	int		len;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	len = ft_strlen(src);
+	new_src = (char *)malloc(sizeof(char) * (len + 1));
+	if (!new_src)
+		return (NULL);
+	while (len >= 0)
+	{
+		new_src[len] = src[len];
+		len--;
+	}
+	return (new_src);
 }

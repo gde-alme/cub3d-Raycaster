@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/11/07 18:08:06 by efreire-          #+#    #+#             */
+/*   Updated: 2021/11/07 18:08:08 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strmapi(char const *str, char (*f)(unsigned int, char))
 {
-	t_data	*data;
+	char			*res;
+	unsigned int	i;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	if (!str || !f)
+		return (NULL);
+	res = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		res[i] = f(i, str[i]);
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
 }

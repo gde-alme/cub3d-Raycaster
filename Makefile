@@ -3,44 +3,67 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gde-alme <gde-alme@student.42.fr>          +#+  +:+       +#+         #
+#    By: efreire- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/15 11:33:26 by gde-alme          #+#    #+#              #
-#    Updated: 2023/03/16 14:58:35 by gde-alme         ###   ########.fr        #
+#    Created: 2023/01/28 17:00:02 by efreire-          #+#    #+#              #
+#    Updated: 2023/01/28 17:00:03 by efreire-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	main.c utils.c movement.c display.c raycaster.c images.c
-OBJS		=	$(SRCS:.c=.o)
 NAME		=	cub3D
+SRCS		=	main.c
+INIT_SRCS	=	init_data.c				set_data_base_vars.c	set_data_map.c			set_data_map_2.c	\
+				set_data_map_3.c		var_builder_utils.c
+RAY_SRCS	=	exec.c					utils.c					movement.c				display.c			\
+				raycaster.c				images.c
+OBJS		=	$(patsubst %.c, %.o, $(SRCS))	\
+				$(patsubst %.c, %.o, $(addprefix init_data/, $(INIT_SRCS)))	\
+				$(patsubst %.c, %.o, $(addprefix raycasting/, $(RAY_SRCS)))
+LIBFT		=	-L libft -lft
 CC			=	gcc
-# CFLAGS	=	-Wall -Wextra -Werror
-CFLAGS		=
-RM			=	rm -rf
-
-%.o: %.c
-			$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+FLAGS		=	-Wall -Wextra -Werror -fsanitize=address
 
 all:		$(NAME)
-			@mkdir -p obj/
-			@mv *.o obj/
 
 $(NAME):	$(OBJS)
-			$(CC) $(OBJS) -L ./minilibx-linux -lmlx -lXext -lX11 -lm -o $(NAME)
+			@make -C libft/
+			$(CC) $(FLAGS) $(OBJS) $(LIBFT) -L ./minilibx-linux -lmlx -lXext -lX11 -lm -o $(NAME)
+
+%.o:		%.c $(INS)
+			$(CC) $(FLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 clean:
-			$(RM) $(OBJS)
+			@make clean -C libft/
+			rm -f $(OBJS)
 
 fclean:		clean
-			$(RM) $(NAME)
-			$(RM) obj/
+			@make fclean -C libft/
+			rm -f $(NAME)
 
 re:			fclean all
 
+test:		all
+			@make clean
+			clear
+			./$(NAME) ./maps/valid/map.cub
+
 norm:
 			norminette -R CheckForbiddenSourceHeader $(SRCS)
+			norminette -R CheckDefine $(INS)
 
-val:
-			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+.PHONY :	all clean fclean re test norm
 
-.PHONY:		all re clean fclean norm val
+# \
+./cub3d ./maps/invalid/map-00.cub; \
+./cub3d ./maps/invalid/map-01.cub; \
+./cub3d ./maps/invalid/map-02.cub; \
+./cub3d ./maps/invalid/map-03.cub; \
+./cub3d ./maps/invalid/map-04.cub; \
+./cub3d ./maps/invalid/map-05.cub; \
+./cub3d ./maps/invalid/map-06.cub; \
+./cub3d ./maps/invalid/map-07.cub; \
+./cub3d ./maps/invalid/map-08.cub; \
+./cub3d ./maps/invalid/map-09.cub; \
+./cub3d ./maps/invalid/map-10.cub; \
+./cub3d ./maps/invalid/map-11.cub; \
+./cub3d ./maps/invalid/map-12.cub;

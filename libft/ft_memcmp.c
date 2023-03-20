@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 15:37:48 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 15:37:49 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_memcmp(const void *str1, const void *str2, size_t len)
 {
-	t_data	*data;
+	unsigned char	*new_str1;
+	unsigned char	*new_str2;
+	size_t			i;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	new_str1 = (unsigned char *) str1;
+	new_str2 = (unsigned char *) str2;
+	i = 0;
+	while (i < len)
+	{
+		if (new_str1[i] != new_str2[i])
+			return (new_str1[i] - new_str2[i]);
+		i++;
+	}
+	return (0);
 }

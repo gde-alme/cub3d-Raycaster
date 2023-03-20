@@ -1,0 +1,14 @@
+NO ../wall-north.xpm
+SO ../wall-south.xpm
+WE ../wall-west.xpm
+EA ../wall-east.xpm
+RA ../wall-east.xpm
+
+F 255,150,50
+C 50,150,255
+
+111111
+1N0001
+100001
+100001
+111111

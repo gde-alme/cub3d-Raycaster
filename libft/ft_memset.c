@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 15:14:45 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 15:14:47 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memset(void *str, int c, size_t len)
 {
-	t_data	*data;
+	unsigned char	*new_str;
+	size_t			i;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	new_str = (unsigned char *) str;
+	i = 0;
+	while (i < len)
+		new_str[i++] = (unsigned char) c;
+	return (str);
 }

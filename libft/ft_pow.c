@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 14:25:24 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 14:37:47 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+long	ft_pow(int base, int exp)
 {
-	t_data	*data;
+	long	res;
+	int		i;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	i = 0;
+	res = 1;
+	while (i++ < exp)
+		res *= base;
+	return (res);
 }

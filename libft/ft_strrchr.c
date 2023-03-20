@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 13:46:57 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 13:52:24 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strrchr(const char *str, int c)
 {
-	t_data	*data;
+	int		i;
+	char	*new_str;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	i = ft_strlen(str) - 1;
+	new_str = (char *) str;
+	if ((char)c == '\0')
+		return (new_str + i + 1);
+	while (i >= 0)
+	{
+		if (new_str[i] == (char)c)
+			return (new_str + i);
+		i--;
+	}
+	return (NULL);
 }

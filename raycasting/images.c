@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "../cub3d.h"
 
 void	_mlx_pixel_put(t_image *image, int x, int y, int color)
 {
@@ -28,14 +28,14 @@ unsigned int	_mlx_get_color(t_image img, int x, int y)
 void	_init_textures_norm(t_data *gdata)
 {
 	gdata->textures.westwall.img = mlx_xpm_file_to_image(gdata->mlx, \
-		"imgs/westwall.xpm", &gdata->textures.westwall.width, \
+		gdata->path_we, &gdata->textures.westwall.width, \
 		&gdata->textures.westwall.height);
 	gdata->textures.westwall.addr = \
 	mlx_get_data_addr(gdata->textures.westwall.img, \
 		&gdata->textures.westwall.bpp, \
 		&gdata->textures.westwall.line_s, &gdata->textures.westwall.endian);
 	gdata->textures.eastwall.img = mlx_xpm_file_to_image(gdata->mlx, \
-	"imgs/eastwall.xpm", &gdata->textures.eastwall.width, \
+	gdata->path_ea, &gdata->textures.eastwall.width, \
 		&gdata->textures.eastwall.height);
 	gdata->textures.eastwall.addr = \
 	mlx_get_data_addr(gdata->textures.eastwall.img, \
@@ -46,14 +46,14 @@ void	_init_textures_norm(t_data *gdata)
 void	_init_textures(t_data *gdata)
 {
 	gdata->textures.northwall.img = mlx_xpm_file_to_image(gdata->mlx, \
-		"imgs/northwall.xpm", &gdata->textures.northwall.width, \
+		gdata->path_no, &gdata->textures.northwall.width, \
 			&gdata->textures.northwall.height);
 	gdata->textures.northwall.addr = \
 	mlx_get_data_addr(gdata->textures.northwall.img, \
 		&gdata->textures.northwall.bpp, \
 		&gdata->textures.northwall.line_s, &gdata->textures.northwall.endian);
 	gdata->textures.southwall.img = mlx_xpm_file_to_image(gdata->mlx, \
-		"imgs/southwall.xpm", &gdata->textures.southwall.width, \
+		gdata->path_so, &gdata->textures.southwall.width, \
 			&gdata->textures.southwall.height);
 	gdata->textures.southwall.addr = \
 	mlx_get_data_addr(gdata->textures.southwall.img, \

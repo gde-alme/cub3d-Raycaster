@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 15:51:02 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 15:51:07 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	t_data	*data;
+	char		*temp;
+	const char	*new_src;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	if (dst <= src)
+		ft_memcpy(dst, src, len);
+	else
+	{
+		temp = dst;
+		temp += len;
+		new_src = src;
+		new_src += len;
+		while (len--)
+			*--temp = *--new_src;
+	}
+	return (dst);
 }

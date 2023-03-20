@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "../cub3d.h"
 
 static void	_display_wall(t_data *gdata, t_display *ddata, float x)
 {
@@ -49,7 +49,8 @@ static	void	_display_floor(t_data *gdata, t_display *ddata)
 	{
 		while ((int)py > ddata->start && py >= 0.0F)
 		{
-			_mlx_pixel_put(&gdata->frame, (int)px, (int)py, BLUE);
+			_mlx_pixel_put(&gdata->frame, (int)px, (int)py, \
+				gdata->floor_color_value);
 			py--;
 		}
 		py = (float)SCRHEIGHT;
@@ -71,7 +72,8 @@ static void	_display_ceiling(t_data *gdata, t_display *ddata)
 	{
 		while (py >= 0.0F)
 		{
-			_mlx_pixel_put(&gdata->frame, (int)px, (int)py, YELLOW);
+			_mlx_pixel_put(&gdata->frame, (int)px, (int)py, \
+				gdata->ceiling_color_value);
 			py--;
 		}
 		py = ddata->end - 1.0F;
@@ -107,9 +109,9 @@ void	_display_3d(t_data *gdata, float pov, float dist, int r)
 	float		x;
 
 	if (gdata->side == 0)
-		x = sin(pov) * dist + gdata->player_pos_y;
+		x = sin(pov) * dist + gdata->player_pos->y;
 	else
-		x = cos(pov) * dist + gdata->player_pos_x;
+		x = cos(pov) * dist + gdata->player_pos->x;
 	x = (int)x + 1.0F - x;
 	camera = fix_angle(gdata->player_angle - pov);
 	dist = dist * cos(camera);

@@ -6,11 +6,11 @@
 /*   By: gde-alme <gde-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:32:12 by gde-alme          #+#    #+#             */
-/*   Updated: 2023/03/16 18:37:40 by gde-alme         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:48:28 by gde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "../cub3d.h"
 
 //change player pov dir
 int	_change_dir(int keycode, t_data *gdata)
@@ -82,8 +82,8 @@ void	_init_wdata(t_wdata *wdata, t_data *gdata, float angle)
 	wdata->wstep.y = 0.0F;
 	wdata->wsidedist.x = 0.0F;
 	wdata->wsidedist.y = 0.0F;
-	wdata->wp_pos.x = gdata->player_pos_x;
-	wdata->wp_pos.y = gdata->player_pos_y;
+	wdata->wp_pos.x = gdata->player_pos->x;
+	wdata->wp_pos.y = gdata->player_pos->y;
 }
 
 int	_can_walk(int keycode, t_data *gdata, t_wdata *wdata)
@@ -106,6 +106,5 @@ int	_can_walk(int keycode, t_data *gdata, t_wdata *wdata)
 		wdata->nexthit = wdata->wsidedist.x;
 	else
 		wdata->nexthit = wdata->wsidedist.y;
-	wdata->nexthit = 1e30;
 	return (0);
 }

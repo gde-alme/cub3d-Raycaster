@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_file_exists.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efreire- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 16:59:56 by efreire-          #+#    #+#             */
-/*   Updated: 2023/01/28 16:59:58 by efreire-         ###   ########.fr       */
+/*   Created: 2021/10/23 13:17:08 by efreire-          #+#    #+#             */
+/*   Updated: 2021/10/23 13:21:25 by efreire-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+bool	ft_file_exists(char *filepath)
 {
-	t_data	*data;
+	int	fd;
 
-	data = init_data(argc, argv);
-	if (data)
-		exec(data);
-	exit(0);
+	fd = open(filepath, O_RDONLY, 0777);
+	close(fd);
+	if (fd == -1)
+		return (false);
+	return (true);
 }
